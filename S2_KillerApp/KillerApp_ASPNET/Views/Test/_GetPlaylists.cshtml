@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Playlist>
+
+<div>
+    <table>
+        <thead>
+        <tr>
+            <th>Playlist</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (Playlist playlist in Model)
+        {
+            <tr>
+                <td>
+                    @playlist.Title
+                </td>
+                <td>
+                    @playlist.Description
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

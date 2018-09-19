@@ -1,0 +1,29 @@
+﻿@* Delete playlist modal *@
+@model UserViewModel
+
+<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="deletePlaylistModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Delete playlist</h4>
+                </div>
+                <form id="deletePlaylist">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <h2>Are you sure to delete <strong>@Model.UserPlaylists.Find(x => x.Id == Model.SelectedPlayList).Title</strong>?</h2>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="confirmEdit" value="@Model.SelectedPlayList" type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button id="confirmDelete" value="@Model.SelectedPlayList" type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

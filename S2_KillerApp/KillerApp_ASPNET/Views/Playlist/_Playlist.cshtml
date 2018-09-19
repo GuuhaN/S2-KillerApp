@@ -1,0 +1,101 @@
+﻿@using System.Security.Claims
+@model UserViewModel
+<script src="~/js/Playlist.js"></script>
+<div class="col-sm-9">
+    <div class="container-fluid text-left">
+        <div class="row">
+            <div class="col-lg-1">
+                    <img src="~/images/Stoneyalbum.jpg" class="img-rounded" width="200" height="200" alt="" />
+            </div>
+            <div class="col-lg-offset-3">
+                <h4>Playlist</h4>
+                <h1>@Model.UserPlaylists.Find(x => x.Id == Model.SelectedPlayList).Title</h1>
+                <p>@Model.UserPlaylists.Find(x => x.Id == Model.SelectedPlayList).Description</p>
+                <p>
+                    Created by <a href="#">@User.FindFirst(ClaimTypes.Name).Value</a> - @Model.UserPlaylists.Find(x => x.Id == Model.SelectedPlayList).SongList.Count songs
+                    @if (!Model.UserPlaylists.Find(x => x.Id == Model.SelectedPlayList).IsPublic)
+                    {
+                        <span class="glyphicon glyphicon-lock"></span>
+                    }
+                    <div class="dropdown">
+                        <button id="dropdownPlaylist" class="glyphicon glyphicon-option-horizontal dropdown-toggle" type="button" data-toggle="dropdown" value="@Model.SelectedPlayList"></button>
+                        <ul class="dropdown-menu">
+                            @if (!Model.UserPlaylists.Find(x => x.Id == Model.SelectedPlayList).IsPublic)
+                            {
+                                <li><a class="setPrivacy" value="@Model.SelectedPlayList" href="#">Make Private</a></li>
+                            }
+                            else
+                            {
+                                <li><a class="setPrivacy" value="@Model.SelectedPlayList" href="#">Make Public</a></li>
+                            }
+                            <li class="divider"></li>
+                            <li><a id="openEditModal" href="#">Edit playlist</a></li>
+                            <li><a id="openDeleteModal" href="#">Delete playlist</a></li>
+                        </ul>
+                    </div>
+                </p>
+            </div>
+            <div class="col-lg-offset-3">
+                <div class="btn btn-success" onclick="PlayMusic('', true);">Play</div>
+            </div>
+        </div>
+    </div>
+    <table class="table table-condensed table-hover">
+        <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                @* Explicit *@
+            </th>
+            <th>
+                Artist
+            </th>
+            <th>
+                Genre
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var y in @Model.UserPlaylists.Find(x => x.Id == Model.SelectedPlayList).SongList)
+        {
+            <tr class="songrow dropdown-toggle" resource="@y.id">
+                <td width="150px">
+                    <button class="songBtn" value="@y.artistName - @y.songname"><span class="glyphicon glyphicon-play-circle"></span></button>
+                </td>
+                <td width="300px">
+                    @y.songname
+                </td>
+                @if (y.isExplicit)
+                {
+                    <td style="text-align: right; opacity: .5">
+                        EXPLICIT
+                    </td>
+                }
+                else
+                {
+                    <td></td>
+                }
+                <td width="300px">
+                    @y.artistName
+                </td>
+                <td width="200px">
+                    @y.genre
+                </td>
+                @*<td width="10px">
+                    <div class="dropdown">
+                        <a class="badge dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="deleteSongFromPlaylist" resource="@y." tabindex="-1" href="#">Delete from playlist</a></li>
+                        </ul>
+                    </div>
+                </td>*@
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

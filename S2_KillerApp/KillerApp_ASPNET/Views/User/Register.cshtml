@@ -1,0 +1,66 @@
+﻿<div class="container">
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-info alert-dismissible fade in">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            @ViewBag.Message
+        </div>
+    }
+    <div class="row main">
+        <div class="panel-heading">
+            <div class="panel-title text-center">
+                <h1 class="title">Register</h1>
+                <hr/>
+            </div>
+        </div>
+        <div class="main-login main-center">
+            <form class="form-horizontal" method="post" asp-controller="User" asp-action="Register">
+
+                <div class="form-group">
+                    <label for="email" class="control-label">Your Email</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" required/>
+                            <span class="text-danger field-validation-valid" data-valmsg-for="ReleaseDate" data-valmsg-replace="true"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username" class="control-label">Username</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user" aria-hidden="true"></i></span>
+                            <input type="text" class="form-control" name="username" id="username" placeholder="Enter your Username" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="control-label">Password</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Enter your Password" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirm" class="control-label">Confirm Password</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock" aria-hidden="true"></i></span>
+                            <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Confirm your Password" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block login-button">Register</button>
+                </div>
+                <div class="login-register">
+                    Already have an account? Click <a asp-controller="User" asp-action="Login">here</a> to login
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

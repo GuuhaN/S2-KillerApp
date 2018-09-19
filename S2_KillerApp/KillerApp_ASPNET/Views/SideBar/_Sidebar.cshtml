@@ -1,0 +1,17 @@
+﻿@model UserViewModel
+<script src="~/js/Sidebar.js"></script>
+<div class="col-sm-3 col-md-2">
+    <ul class="nav">
+        <li><a hfref="#" class="menuBtn" value="browse">Browse</a></li>
+        <li>
+            <h1>Playlists</h1>
+        </li>
+        @foreach (var x in Model.UserPlaylists)
+        {
+            <li><a href="#" id="playlist" class="menuBtn unstyled" value="playlist @x.Id">@x.Title</a></li>
+        }
+    </ul>
+    <ul class="nav">
+        <li><a id="openCreateNewPlaylistModal" href="#"><strong>Create New Playlist</strong></a></li>
+    </ul>
+</div>

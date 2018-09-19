@@ -1,0 +1,82 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "Main";
+}
+
+<div id="sideBar">
+
+    @if (Model != null)
+    {
+        await Html.RenderPartialAsync("../SideBar/_Sidebar", Model);
+    }
+</div>
+
+<div id="mainPartial">
+    @* Main partial renders here like Playlist/Album/Browse *@
+</div>
+
+<div id="detailsModal">
+
+</div>
+
+<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="addSongToPlaylistModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4>Add song: <strong id="modalSongTitle">Post Malone - Congratulations</strong></h4>
+                </div>
+                <form id="addSongToPlaylist">
+                    <div class="modal-body">
+                        <table class="table table-condensed table-hover">
+                            <tbody>
+                                @foreach (var y in Model.UserPlaylists)
+                                {
+                                    <tr class="modalPlaylistSelect playlistBtn" resource="@y.Id">
+                                        <td width="150px">
+                                            <a href="#" class="playlistBtn" resource="@y.Id">@y.Title</a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--/.Footer-->
+@if (User.Identity.IsAuthenticated)
+{
+    <footer id="audioContainer">
+        <div class="row text-center">
+            <div class="col-md-2 col-lg-offset-3">
+                <h4 id="barSongTitle"></h4>
+            </div>
+            <div class="col-md-2">
+                <button type="button" onclick="PreviousSong()" class="btn btn-default" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
+                </button>
+                <button type="button" class="playpause btn btn-default" aria-label="Left Align">
+                    <span id="playpauseIcon" class="glyphicon glyphicon-play" aria-hidden="true"></span>
+                </button>
+                <button type="button" onclick="NextSong()" class="btn btn-default" aria-label="Left Align">
+                    <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="col-md-2">
+                <input type="range" min="0" max="200" value="50" id="volumeSlider">
+            </div>
+        </div>
+    </footer>
+}

@@ -1,0 +1,18 @@
+﻿@model UserViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+<!-- dkWOAdkiwoad -->
+<div>
+    <h4>Hello @Model.User.Username !</h4>
+    <h4>Your email is: @Model.User.Email</h4>
+    <hr />
+    <dl class="dl-horizontal">
+    </dl>
+</div>
+<div>
+    <a asp-controller="Music" asp-action="Main">Back to List</a>
+</div>
